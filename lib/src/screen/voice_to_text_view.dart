@@ -15,6 +15,7 @@ class VoiceToTextView extends StatefulWidget {
   final Widget? saveIcon;
   final Color? loaderColor;
   final ActionType clickedActionType;
+  final bool micClicked;
 
   const VoiceToTextView(
       {Key? key,
@@ -22,6 +23,7 @@ class VoiceToTextView extends StatefulWidget {
       required this.listenTextCompleteCallBack,
       this.listenStatus = ListenStatus.non,
       this.isDoingBackgroundProcess = false,
+      this.micClicked = false,
       this.listenStatusCallBack,
       this.clickedActionType = ActionType.search,
       this.loaderColor = Colors.white,
@@ -33,7 +35,7 @@ class VoiceToTextView extends StatefulWidget {
 
   @override
   State<VoiceToTextView> createState() => _VoiceToTextViewState(
-      listenStatus: listenStatus,
+      listenStatus: listenStatus,micClicked:micClicked,
       isDoingBackgroundProcess: isDoingBackgroundProcess!);
 }
 
@@ -46,18 +48,24 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
   ActionType actionType = ActionType.search;
   bool isDoingBackgroundProcess;
   double cardRadius = 20.0;
+  bool micClicked;
   _VoiceToTextViewState(
-      {this.listenStatus = ListenStatus.non,
-      this.isDoingBackgroundProcess = false});
+      {this.listenStatus = ListenStatus.non,this.micClicked = false,
+      this.isDoingBackgroundProcess = false}){
+    if(micClicked){
+      Timer(const Duration(milliseconds: 5), () {
+        //if(mounted){
+          try {
+            _voiceListenerBottomSheet(context:context,actionTypeValue: widget.clickedActionType);
+          } catch (e) {
+            print(e);
+          }
+       // }
+      });
+    }
 
-  final Map<String, HighlightedWord> highlightWords = {
-    "flutter": HighlightedWord(
-        textStyle: const TextStyle(
-            color: Colors.redAccent, fontWeight: FontWeight.bold)),
-    "developer": HighlightedWord(
-        textStyle: const TextStyle(
-            color: Colors.redAccent, fontWeight: FontWeight.bold)),
-  };
+  }
+
 
   @override
   void didUpdateWidget(covariant VoiceToTextView oldWidget) {
@@ -68,90 +76,6 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
         isDoingBackgroundProcess = widget.isDoingBackgroundProcess!;
       });
     }
-  }
-
-  void listen() async {
-    //Display pop to take input from user for search type
-    if (!isListen && listenStatus == ListenStatus.non) {
-      voiceToTextListen(actionType);
-      /*showMyDialog((ActionType clickedActionType) async {
-        voiceToTextListen(clickedActionType);
-      });*/
-    } else if (!isListen && (listenStatus == ListenStatus.done)) {
-      textStreamDone();
-    } else {
-      setState(() {
-        isListen = false;
-        listenStatus == ListenStatus.done;
-      });
-      speech.stop();
-    }
-  }
-
-  //voice to text
-  voiceToTextListen(ActionType clickedActionType) async {
-    bool avail = await speech.initialize();
-    if (avail) {
-      setState(() {
-        isListen = true;
-      });
-      speech.statusListener = (value) {
-        if (mounted) {
-          String statusValue = value.toLowerCase();
-          if (statusValue == "listening") {
-            setState(() {
-              listenStatus = ListenStatus.listening;
-            });
-            widget.listenStatusCallBack?.call(ListenStatus.listening);
-          } else if (statusValue == "notlistening") {
-            setState(() {
-              listenStatus = ListenStatus.notListening;
-              isListen = false;
-            });
-            widget.listenStatusCallBack?.call(ListenStatus.notListening);
-          } else if (statusValue == "done") {
-            setState(() {
-              actionType = clickedActionType;
-              listenStatus = ListenStatus.done;
-              isListen = false;
-            });
-
-            widget.listenStatusCallBack?.call(ListenStatus.done);
-          } else {
-            setState(() {
-              listenStatus = ListenStatus.non;
-              isListen = false;
-            });
-            widget.listenStatusCallBack?.call(ListenStatus.non);
-          }
-        }
-      };
-
-      speech.listen(onResult: (value) {
-        setState(() {
-          textStringValue = value.recognizedWords;
-          if (value.hasConfidenceRating && value.confidence > 0) {
-            confidence = value.confidence;
-          } else {}
-        });
-        widget.listenTextStreamCallBack.call(textStringValue);
-      });
-    }
-  }
-
-  textStreamDone() {
-    String textStringValueTemp = textStringValue;
-    setState(() {
-      listenStatus = ListenStatus.non;
-      if (textStringValue.isNotEmpty) {
-        //Store value in case
-        if (actionType == ActionType.store) {
-          packageUtil.addVoiceText = textStringValue;
-        }
-        textStringValue = "";
-      }
-    });
-    widget.listenTextCompleteCallBack.call(textStringValueTemp, actionType);
   }
 
   @override
@@ -202,7 +126,6 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
             ],
           ),
         ));
-
     showModalBottomSheet(
         context: context,
         backgroundColor: Colors.transparent,
@@ -220,9 +143,13 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
                     selectedItemCallBack.call(ActionType.search);
                   },
                   child: getText('Search')),
-              const Divider(
-                height: 0.5,
-                color: Colors.grey,
+              const SizedBox(height: 5,
+                child:  Center(
+                  child: Divider(
+                    height: 0.5,
+                    color: Colors.grey,
+                  ),
+                ),
               ),
               InkWell(
                   onTap: () {
@@ -252,7 +179,7 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
 
   void _voiceListenerBottomSheet({context,ActionType actionTypeValue = ActionType.search}) {
     showModalBottomSheet(isScrollControlled:actionTypeValue == ActionType.store?true:false,
-        context: context,
+        context: context,isDismissible:false,
         backgroundColor: Colors.transparent,
         builder: (BuildContext bc) {
           return BottomSheetView(loaderColor:widget.loaderColor,
