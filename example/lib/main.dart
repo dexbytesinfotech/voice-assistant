@@ -107,7 +107,9 @@ bool isSearching = false;
             ),*/
 
 
-            SizedBox(height: 300,child: Align(alignment: Alignment.bottomCenter,child: VoiceToTextView(isDoingBackgroundProcess: isSearching,listenTextStreamCallBack: (String? value) {
+            SizedBox(height: 300,child: Align(alignment: Alignment.bottomCenter,child:
+
+            VoiceToTextView(isDoingBackgroundProcess: isSearching,listenTextStreamCallBack: (String? value) {
              // setState(() {
                // textStringValue = value!;
               //});
