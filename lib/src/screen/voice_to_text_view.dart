@@ -177,7 +177,7 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
 
 
         },
-        child: SizedBox(height: 50, width: 50, child: widget.micIcon!=null?widget.micIcon! : const Icon(Icons.mic)));
+        child: widget.micIcon!=null?widget.micIcon! : const Icon(Icons.mic));
   }
   //Card decoration
   BoxDecoration boxDecoration (){
