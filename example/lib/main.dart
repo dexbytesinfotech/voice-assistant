@@ -109,7 +109,7 @@ bool isSearching = false;
 
             SizedBox(height: 300,child: Align(alignment: Alignment.bottomCenter,child:
 
-            VoiceToTextView(isDoingBackgroundProcess: isSearching,listenTextStreamCallBack: (String? value) {
+            VoiceToTextView(micClicked: true,isDoingBackgroundProcess: isSearching,listenTextStreamCallBack: (String? value) {
              // setState(() {
                // textStringValue = value!;
               //});
