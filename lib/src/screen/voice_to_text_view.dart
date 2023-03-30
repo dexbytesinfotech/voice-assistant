@@ -2,7 +2,7 @@ part of voice_to_text;
 
 enum ListenStatus { non, listening, notListening, done }
 
-enum ActionType { search, store }
+enum ActionType { search, store ,multiOption}
 
 class VoiceToTextView extends StatefulWidget {
   final Function(String?) listenTextStreamCallBack;
@@ -14,6 +14,7 @@ class VoiceToTextView extends StatefulWidget {
   final Widget? micNoneIcon;
   final Widget? saveIcon;
   final Color? loaderColor;
+  final ActionType clickedActionType;
 
   const VoiceToTextView(
       {Key? key,
@@ -22,6 +23,7 @@ class VoiceToTextView extends StatefulWidget {
       this.listenStatus = ListenStatus.non,
       this.isDoingBackgroundProcess = false,
       this.listenStatusCallBack,
+      this.clickedActionType = ActionType.search,
       this.loaderColor = Colors.white,
       this.micIcon,
       this.micNoneIcon,
@@ -158,48 +160,22 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
     speech = speechToText.SpeechToText();
   }
 
-  Widget getIcon(
-      {bool isListen = false, ListenStatus listenStatus = ListenStatus.non}) {
-    if (isDoingBackgroundProcess) {
-      return Center(
-          child: SizedBox(
-              height: 30,
-              width: 30,
-              child: CircularProgressIndicator(
-                strokeWidth: 0.8,
-                color: widget.loaderColor,
-              )));
-    } else if (isListen && (listenStatus == ListenStatus.listening)) {
-      return widget.micIcon!=null?widget.micIcon!:const Icon(Icons.mic);
-    } else if (!isListen && (listenStatus == ListenStatus.non)) {
-      return widget.micNoneIcon!=null?widget.micNoneIcon!:const Icon(Icons.mic_none);
-    } else if (!isListen &&
-        textStringValue.isEmpty &&
-        listenStatus == ListenStatus.done) {
-      return widget.micNoneIcon!=null?widget.micNoneIcon!:const Icon(Icons.mic_none);
-    } else if (!isListen &&
-        textStringValue.isNotEmpty &&
-        listenStatus == ListenStatus.done) {
-      if(actionType == ActionType.search){
-        return const Icon(Icons.search_rounded);
-      }
-      else {
-        return widget.saveIcon!=null?widget.saveIcon!: const Icon(Icons.save);
-      }
-    }
-    return widget.micNoneIcon!=null?widget.micNoneIcon!:const Icon(Icons.mic_none);
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          //Multi option for search and save
-          _optionBottomSheet(context,(ActionType clickedActionType){
-            _voiceListenerBottomSheet(context:context,actionTypeValue: clickedActionType);
-          });
-          //Direct search
-        // _voiceListenerBottomSheet(context:context);
+          if(widget.clickedActionType == ActionType.multiOption){
+            //Multi option for search and save
+            _optionBottomSheet(context,(ActionType clickedActionType){
+              _voiceListenerBottomSheet(context:context,actionTypeValue: clickedActionType);
+            });
+          }
+          else{
+            //Direct search
+            _voiceListenerBottomSheet(context:context,actionTypeValue: widget.clickedActionType);
+          }
+
+
         },
         child: SizedBox(height: 50, width: 50, child: widget.micIcon!=null?widget.micIcon! : const Icon(Icons.mic)));
   }
