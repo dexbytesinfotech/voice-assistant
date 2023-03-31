@@ -254,7 +254,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
   Widget topMessageView(){
     return Column(mainAxisSize: MainAxisSize.min,
       children: [
-        Text(textStringValue.isNotEmpty?textStringValue:(isListen?"Listening..":"")),
+        Text(textStringValue.isNotEmpty?textStringValue:(isListen?"Listening..":""),maxLines: 1,),
         actionType==ActionType.store && textStringValue.isNotEmpty ?SizedBox(width: MediaQuery.of(context).size.width/1.25,
           child:
           Padding(
