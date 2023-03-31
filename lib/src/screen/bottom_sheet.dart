@@ -49,10 +49,13 @@ class _BottomSheetViewState extends State<BottomSheetView> {
   ActionType actionType = ActionType.search;
   bool isDoingBackgroundProcess;
   bool isError = false;
+  bool doneCalled = false;
   String topErrorMessage = "Sorry! Didn't hear that";
   String topSecondMessage = "Try saying restaurant name or a dish";
   String bottomMessage = "Tap the microphone to try again";
   double cardRadius = 20.0;
+  Timer? listenTimer;
+  int listenEndTimeInSecond = 15;
 
   _BottomSheetViewState({this.listenStatus = ListenStatus.non,this.isDoingBackgroundProcess = false,this.actionType = ActionType.search}){
     Timer(const Duration(milliseconds: 5), () {
@@ -91,13 +94,24 @@ class _BottomSheetViewState extends State<BottomSheetView> {
 
   //voice to text
   voiceToTextListen(ActionType clickedActionType) async {
-    bool avail = await speech.initialize();
+    bool avail = await speech.initialize(finalTimeout: const Duration(milliseconds: 500));
     if (avail) {
       setState(() {
         isListen = true;
+        doneCalled = false;
         isError = false;
+
       });
+      listenTimer = Timer(Duration(seconds: listenEndTimeInSecond), () {
+        listenTimer!.cancel();
+        speech.stop();
+
+      });
+      speech.errorListener = (value) {
+        print("Error $value ");
+      };
       speech.statusListener = (value) {
+        print("Error LLL Status  $value ");
         if (mounted) {
           String statusValue = value.toLowerCase();
           if (statusValue == "listening") {
@@ -112,8 +126,9 @@ class _BottomSheetViewState extends State<BottomSheetView> {
             });
             widget.listenStatusCallBack?.call(ListenStatus.notListening);
           }
-          else if (statusValue == "done") {
+          else if (statusValue == "done" && !doneCalled) {
             setState(() {
+              doneCalled = true;
               actionType = clickedActionType;
               listenStatus = ListenStatus.done;
             });
@@ -122,16 +137,20 @@ class _BottomSheetViewState extends State<BottomSheetView> {
           }
           else {
             print("$statusValue ");
-            setState(() {
-              listenStatus = ListenStatus.non;
-              isListen = false;
-            });
-            widget.listenStatusCallBack?.call(ListenStatus.non);
+            if(!doneCalled){
+              setState(() {
+                listenStatus = ListenStatus.non;
+                isListen = false;
+              });
+              widget.listenStatusCallBack?.call(ListenStatus.non);
+            }
+
           }
         }
       };
 
       speech.listen(onResult: (value) {
+        print("Error LLL  $value ");
         setState(() {
           textStringValue = value.recognizedWords;
           if (value.hasConfidenceRating && value.confidence > 0) {
@@ -155,33 +174,39 @@ class _BottomSheetViewState extends State<BottomSheetView> {
 
   }
 
-  textStreamDone(){
+  textStreamDone() {
     String textStringValueTemp = textStringValue;
+    if(mounted){
     setState(() {
-        listenStatus = ListenStatus.non;
+      listenStatus = ListenStatus.non;
       //If voice not detect any voice to txt
-      if(textStringValueTemp.isEmpty){
+      if (textStringValueTemp.isEmpty) {
         isError = true;
         isListen = false;
       }
     });
+  }
     //Call Done function if get voice text
     if(textStringValueTemp.isNotEmpty){
      if(actionType == ActionType.store){
-       setState(() {
-         listenStatus = ListenStatus.done;
-         // textStringValue = "";
-         isListen = false;
-       });
+       if(mounted) {
+         setState(() {
+           listenStatus = ListenStatus.done;
+           // textStringValue = "";
+           isListen = false;
+         });
+       }
        //packageUtil.addVoiceText = textStringValue;
      }
      else if (actionType == ActionType.search){
        Timer(const Duration(seconds: 2), () {
-         setState(() {
-           textStringValue = "";
-           isListen = false;
-         });
-         widget.listenTextCompleteCallBack.call(textStringValueTemp,actionType);
+         if(mounted){
+           setState(() {
+             textStringValue = "";
+             isListen = false;
+           });
+           widget.listenTextCompleteCallBack.call(textStringValueTemp,actionType);
+         }
        });
      }
 
