@@ -12,6 +12,9 @@ class BottomSheetView extends StatefulWidget {
   final Widget? micNoneIcon;
   final Widget? saveIcon;
   final Color? loaderColor;
+  final Color? waveColor;
+  final Color? waveDoneColor;
+  final Color? micBgColorColor;
 
   const BottomSheetView(
       {Key? key,
@@ -26,6 +29,9 @@ class BottomSheetView extends StatefulWidget {
         this.micIcon,
         this.micNoneIcon,
         this.saveIcon,
+        this.waveColor = Colors.red,
+        this.waveDoneColor = Colors.green,
+        this.micBgColorColor = Colors.green,
       })
       : super(key: key);
 
@@ -54,14 +60,6 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     });
   }
 
-  final Map<String, HighlightedWord> highlightWords = {
-    "flutter": HighlightedWord(
-        textStyle: const TextStyle(
-            color: Colors.redAccent, fontWeight: FontWeight.bold)),
-    "developer": HighlightedWord(
-        textStyle: const TextStyle(
-            color: Colors.redAccent, fontWeight: FontWeight.bold)),
-  };
 
   @override
   void didUpdateWidget(covariant BottomSheetView oldWidget) {
@@ -308,12 +306,12 @@ class _BottomSheetViewState extends State<BottomSheetView> {
                     !isError?const SizedBox(height: 0,):topErrorMessageView(),
                     AvatarGlow(
                       animate: isListen,
-                      glowColor: textStringValue.isNotEmpty?Colors.green:Colors.red,
+                      glowColor: textStringValue.isNotEmpty?widget.waveDoneColor!:widget.waveColor!,
                       endRadius: 65.0,
                       duration: const Duration(milliseconds: 2000),
                       repeatPauseDuration: const Duration(milliseconds: 100),
                       repeat: true,
-                      child: FloatingActionButton(
+                      child: FloatingActionButton(backgroundColor: widget.micBgColorColor,
                         child: getIcon(isListen: isListen, listenStatus: listenStatus!),
                         onPressed: () {
                           if(!isDoingBackgroundProcess){

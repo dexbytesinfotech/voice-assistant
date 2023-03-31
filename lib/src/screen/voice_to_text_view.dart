@@ -14,6 +14,9 @@ class VoiceToTextView extends StatefulWidget {
   final Widget? micNoneIcon;
   final Widget? saveIcon;
   final Color? loaderColor;
+  final Color? waveColor;
+  final Color? waveDoneColor;
+  final Color? micBgColorColor;
   final ActionType clickedActionType;
   final bool micClicked;
 
@@ -30,6 +33,9 @@ class VoiceToTextView extends StatefulWidget {
       this.micIcon,
       this.micNoneIcon,
       this.saveIcon,
+        this.waveColor = Colors.red,
+        this.waveDoneColor = Colors.green,
+        this.micBgColorColor = Colors.green,
       })
       : super(key: key);
 
@@ -182,7 +188,11 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
         context: context,isDismissible:false,
         backgroundColor: Colors.transparent,
         builder: (BuildContext bc) {
-          return BottomSheetView(loaderColor:widget.loaderColor,
+          return BottomSheetView(
+              waveColor:widget.waveColor,
+              waveDoneColor:widget.waveDoneColor,
+              micBgColorColor:widget.micBgColorColor,
+              loaderColor:widget.loaderColor,
               micIcon:widget.micIcon,
               micNoneIcon:widget.micNoneIcon,
               saveIcon:widget.saveIcon,actionType: actionTypeValue,
