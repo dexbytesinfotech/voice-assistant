@@ -186,7 +186,7 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
   void _voiceListenerBottomSheet({context,ActionType actionTypeValue = ActionType.search}) {
     showModalBottomSheet(isScrollControlled:actionTypeValue == ActionType.store?true:false,
         context: context,isDismissible:false,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent,elevation: 0,
         builder: (BuildContext bc) {
           return BottomSheetView(
               waveColor:widget.waveColor,
