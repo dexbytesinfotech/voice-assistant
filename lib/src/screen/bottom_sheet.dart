@@ -289,12 +289,12 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     return Wrap(alignment: WrapAlignment.center,crossAxisAlignment: WrapCrossAlignment.center,
       children: <Widget>[
         Column(mainAxisSize: MainAxisSize.max,crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.center,children: [
-          FloatingActionButton(backgroundColor: Colors.grey.shade500,
+          /*FloatingActionButton(backgroundColor: Colors.grey.shade500,
             child: const Icon(Icons.close,color: Colors.white,),
             onPressed: () {
               widget.closeCallBack?.call();
             },
-          ),
+          ),*/
           const SizedBox(height: 10,),
           Container(padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),decoration: boxDecoration(),
             child: Row(crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.center,
