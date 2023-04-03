@@ -19,6 +19,7 @@ class VoiceToTextView extends StatefulWidget {
   final Color? micBgColorColor;
   final ActionType clickedActionType;
   final bool micClicked;
+  final int listenEndTimeInSecond ;
 
   const VoiceToTextView(
       {Key? key,
@@ -32,6 +33,7 @@ class VoiceToTextView extends StatefulWidget {
       this.loaderColor = Colors.white,
       this.micIcon,
       this.micNoneIcon,
+      this.listenEndTimeInSecond = 5,
       this.saveIcon,
         this.waveColor = Colors.red,
         this.waveDoneColor = Colors.green,
@@ -190,6 +192,7 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
         builder: (BuildContext bc) {
           return BottomSheetView(
               waveColor:widget.waveColor,
+              listenEndTimeInSecond:widget.listenEndTimeInSecond,
               waveDoneColor:widget.waveDoneColor,
               micBgColorColor:widget.micBgColorColor,
               loaderColor:widget.loaderColor,

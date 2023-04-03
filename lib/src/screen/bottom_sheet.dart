@@ -15,7 +15,7 @@ class BottomSheetView extends StatefulWidget {
   final Color? waveColor;
   final Color? waveDoneColor;
   final Color? micBgColorColor;
-
+  final int listenEndTimeInSecond ;
   const BottomSheetView(
       {Key? key,
         required this.listenTextStreamCallBack,
@@ -28,6 +28,7 @@ class BottomSheetView extends StatefulWidget {
         this.loaderColor = Colors.white,
         this.micIcon,
         this.micNoneIcon,
+        this.listenEndTimeInSecond = 5,
         this.saveIcon,
         this.waveColor = Colors.red,
         this.waveDoneColor = Colors.green,
@@ -37,7 +38,7 @@ class BottomSheetView extends StatefulWidget {
 
   @override
   State<BottomSheetView> createState() =>
-      _BottomSheetViewState(listenStatus: listenStatus,isDoingBackgroundProcess:isDoingBackgroundProcess!,actionType: actionType!);
+      _BottomSheetViewState(listenStatus: listenStatus,isDoingBackgroundProcess:isDoingBackgroundProcess!,actionType: actionType!,listenEndTimeInSecond:this.listenEndTimeInSecond);
 }
 
 class _BottomSheetViewState extends State<BottomSheetView> {
@@ -55,9 +56,9 @@ class _BottomSheetViewState extends State<BottomSheetView> {
   String bottomMessage = "Tap the microphone to try again";
   double cardRadius = 20.0;
   Timer? listenTimer;
-  int listenEndTimeInSecond = 15;
+  int listenEndTimeInSecond ;
 
-  _BottomSheetViewState({this.listenStatus = ListenStatus.non,this.isDoingBackgroundProcess = false,this.actionType = ActionType.search}){
+  _BottomSheetViewState({this.listenEndTimeInSecond = 5,this.listenStatus = ListenStatus.non,this.isDoingBackgroundProcess = false,this.actionType = ActionType.search}){
     Timer(const Duration(milliseconds: 5), () {
       listen();
     });
