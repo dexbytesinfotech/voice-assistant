@@ -1,12 +1,12 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=E:\FlutterSDK\sdk\flutter"
-export "FLUTTER_APPLICATION_PATH=F:\FlutterAppWorkspace\fluter_packages\voice_to_text\voice_to_text"
+export "FLUTTER_ROOT=/Users/apple/flutter/flutter_sdk/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/apple/StudioProjects/all projects/voice_assistant/voice-assistant"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
-export "FLUTTER_TARGET=lib\main.dart"
+export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
-export "FLUTTER_BUILD_NAME=0.0.1"
-export "FLUTTER_BUILD_NUMBER=0.0.1"
+export "FLUTTER_BUILD_NAME=1.1.1"
+export "FLUTTER_BUILD_NUMBER=1.1.1"
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"

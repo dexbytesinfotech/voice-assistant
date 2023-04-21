@@ -1,6 +1,6 @@
-name: voice_to_text
+name: voice_assistant
 description: A Flutter plugin that exposes device specific speech to text recognition.
-version: 1.1.1
+version: 1.0.0
 homepage: https://github.com/dexbytes
 repository: https://github.com/dexbytesinfotech/voice-assistant.git
 
