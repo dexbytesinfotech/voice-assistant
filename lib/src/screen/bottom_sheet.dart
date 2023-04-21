@@ -111,11 +111,8 @@ class _BottomSheetViewState extends State<BottomSheetView> {
         listenTimer!.cancel();
         speech.stop();
       });
-      speech.errorListener = (value) {
-        print("Error $value ");
-      };
+      speech.errorListener = (value) {};
       speech.statusListener = (value) {
-        print("Error LLL Status  $value ");
         if (mounted) {
           String statusValue = value.toLowerCase();
           if (statusValue == "listening") {
@@ -137,7 +134,6 @@ class _BottomSheetViewState extends State<BottomSheetView> {
             widget.listenStatusCallBack?.call(ListenStatus.done);
             textStreamDone();
           } else {
-            print("$statusValue ");
             if (!doneCalled) {
               setState(() {
                 listenStatus = ListenStatus.non;
@@ -150,7 +146,6 @@ class _BottomSheetViewState extends State<BottomSheetView> {
       };
 
       speech.listen(onResult: (value) {
-        print("Error LLL  $value ");
         setState(() {
           textStringValue = value.recognizedWords;
           if (value.hasConfidenceRating && value.confidence > 0) {
@@ -195,7 +190,6 @@ class _BottomSheetViewState extends State<BottomSheetView> {
             isListen = false;
           });
         }
-        //packageUtil.addVoiceText = textStringValue;
       } else if (actionType == ActionType.search) {
         Timer(const Duration(seconds: 2), () {
           if (mounted) {

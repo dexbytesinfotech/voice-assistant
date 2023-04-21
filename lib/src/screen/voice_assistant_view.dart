@@ -64,14 +64,12 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
       this.isDoingBackgroundProcess = false}) {
     if (micClicked) {
       Timer(const Duration(milliseconds: 5), () {
-        //if(mounted){
         try {
           _voiceListenerBottomSheet(
               context: context, actionTypeValue: widget.clickedActionType);
         } catch (e) {
-          print(e);
+          // print(e);
         }
-        // }
       });
     }
   }
@@ -117,7 +115,6 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
   BoxDecoration boxDecoration() {
     return BoxDecoration(
       color: Colors.white,
-      // border: Border.all(width: 10,color: Colors.red[300],),
       borderRadius: BorderRadius.only(
           topLeft: Radius.circular(cardRadius),
           topRight: Radius.circular(cardRadius)),
@@ -132,7 +129,6 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              // const Icon(Icons.radio_button_off),
               const SizedBox(
                 width: 5,
               ),

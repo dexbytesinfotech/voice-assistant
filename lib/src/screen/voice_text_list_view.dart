@@ -39,9 +39,7 @@ class _VoiceTextListViewState extends State<VoiceTextListView> {
             InkWell(
                 onTap: () {
                   setState(() {
-                    // isRevers = !isRevers;
                     dataList = dataList.reversed.toList();
-                    // dataList = dataList.reversed;
                   });
                 },
                 child: Container(

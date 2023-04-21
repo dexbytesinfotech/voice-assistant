@@ -9,7 +9,7 @@ class LocalStorage {
       final prefs = await SharedPreferences.getInstance();
       prefs.clear();
     } catch (e) {
-      // debugPrint("$e");
+      return false;
     }
   }
 
@@ -19,10 +19,8 @@ class LocalStorage {
       final key = keys;
       final value = values;
       prefs.setString(key, value);
-      print('saved $key $value');
       return true;
     } catch (e) {
-      // debugPrint("$e");
       return false;
     }
   }
@@ -31,9 +29,7 @@ class LocalStorage {
     try {
       final prefs = await SharedPreferences.getInstance();
       final key = keys;
-      print('read key: $keys');
       final value = prefs.getString(key) ?? "";
-      print('read value: $keys $value');
       return value;
     } catch (e) {
       print("$e");
