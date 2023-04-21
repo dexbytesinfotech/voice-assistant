@@ -37,11 +37,13 @@ class BottomSheetView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<BottomSheetView> createState() => _BottomSheetViewState(
-      listenStatus: listenStatus,
-      isDoingBackgroundProcess: isDoingBackgroundProcess!,
-      actionType: actionType!,
-      listenEndTimeInSecond: this.listenEndTimeInSecond);
+  State<BottomSheetView> createState() {
+    return _BottomSheetViewState(
+        listenStatus: listenStatus,
+        isDoingBackgroundProcess: isDoingBackgroundProcess!,
+        actionType: actionType!,
+        listenEndTimeInSecond: listenEndTimeInSecond);
+  }
 }
 
 class _BottomSheetViewState extends State<BottomSheetView> {
@@ -279,7 +281,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
                             try {
                               setState(() {});
                             } catch (e) {
-                              print(e);
+                              // print(e);
                             }
                           }
                           // isEnable = false;

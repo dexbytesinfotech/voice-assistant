@@ -129,6 +129,7 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
+              // const Icon(Icons.radio_button_off),
               const SizedBox(
                 width: 5,
               ),

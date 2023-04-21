@@ -14,10 +14,10 @@ class InputTextView extends StatefulWidget {
 
 class _InputTextViewState extends State<InputTextView> {
   bool isEnable = false;
-  String inputValue;
+  String inputValue = "";
   final controller = TextEditingController();
 
-  _InputTextViewState({this.inputValue = ""});
+  _InputTextViewState();
 
   @override
   void initState() {
