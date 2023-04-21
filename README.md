@@ -12,13 +12,13 @@ conversion or always on listening.
 | **Support**   | SDK 21+   | 10.0+  |
 
 # voice-assistant Implementation Guide
-Add below permission in iOS info.plist
+## Add below permission in iOS info.plist. 
     <key>NSMicrophoneUsageDescription</key>
     <string>This example listens for speech on the device microphone on your request.</string>
     <key>NSSpeechRecognitionUsageDescription</key>
     <string>This example recognizes words as you speak them and displays them. </string>
 
-Add below permission in android AndroidManifest.xml
+## Add below permission in android AndroidManifest.xml
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -43,7 +43,7 @@ pub get.
 
 voice_assistant: ^1.0.0
 
-## Multi Step Form UI Sample
+[comment]: <> (## Multi Step Form UI Sample)
 
 [comment]: <> (![alt text]&#40;https://github.com/dexbytes/dynamic_multi_step_form/blob/master/lib/ui_image/multi_step_form.png?raw=true&#41;)
 
