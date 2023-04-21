@@ -12,12 +12,23 @@ conversion or always on listening.
 | **Support**   | SDK 21+   | 10.0+  |
 
 # voice-assistant Implementation Guide
+# Add below permission in iOS info.plist
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This example listens for speech on the device microphone on your request.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>This example recognizes words as you speak them and displays them. </string>
+
+# Add below permission in android AndroidManifest.xml
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 ## Features
 
 Use this plugin in your Flutter app to:
 
-* Create Pfd with multi pages by selecting images.
+* Convert speech to text and search.
+* Convert speech to text and store text in local storage.
 
 ## Getting started
 
