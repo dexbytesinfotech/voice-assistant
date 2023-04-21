@@ -18,21 +18,21 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Voice Assistant'),
+      home: const MyAppPage(title: 'Voice Assistant'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MyAppPage extends StatefulWidget {
+  const MyAppPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyAppPage> createState() => _MyAppPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyAppPageState extends State<MyAppPage> {
   String textStringValue = "";
   List<dynamic> searchedData = [];
   bool isSearching = false;
@@ -45,8 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
           iconTheme: const IconThemeData(
             color: Colors.black, //change your color here
           ),
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
           title:
               Text(widget.title, style: const TextStyle(color: Colors.black)),
           centerTitle: true,
