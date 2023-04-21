@@ -16,6 +16,7 @@ class BottomSheetView extends StatefulWidget {
   final Color? waveDoneColor;
   final Color? micBgColorColor;
   final int listenEndTimeInSecond;
+
   const BottomSheetView({
     Key? key,
     required this.listenTextStreamCallBack,

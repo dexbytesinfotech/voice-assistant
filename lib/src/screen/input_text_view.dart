@@ -3,6 +3,7 @@ part of voice_assistant;
 class InputTextView extends StatefulWidget {
   final String inputValue;
   final Function(String)? currentTextCallBack;
+
   const InputTextView(
       {Key? key, this.inputValue = "", this.currentTextCallBack})
       : super(key: key);
@@ -15,6 +16,7 @@ class _InputTextViewState extends State<InputTextView> {
   bool isEnable = false;
   String inputValue;
   final controller = TextEditingController();
+
   _InputTextViewState({this.inputValue = ""});
 
   @override

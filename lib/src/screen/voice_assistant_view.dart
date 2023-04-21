@@ -57,6 +57,7 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
   bool isDoingBackgroundProcess;
   double cardRadius = 20.0;
   bool micClicked;
+
   _VoiceToTextViewState(
       {this.listenStatus = ListenStatus.non,
       this.micClicked = false,

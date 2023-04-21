@@ -42,11 +42,11 @@ class LocalStorage {
   }
 
   /*Get stored local form from device */
-  Future<String>? getFormDataLocal() async{
-    String?  formData = "";
+  Future<String>? getFormDataLocal() async {
+    String? formData = "";
     try {
       prefs ??= await _prefs;
-      formData = prefs!.getString("form_data_local")??"";
+      formData = prefs!.getString("form_data_local") ?? "";
     } catch (e) {
       print(e);
       formData = "";
@@ -55,12 +55,13 @@ class LocalStorage {
   }
 
   /*Store form data local device*/
-  Future<String>? storeFormDataLocal(String formJson) async{
-    String?  formData = "";
+  Future<String>? storeFormDataLocal(String formJson) async {
+    String? formData = "";
     try {
       prefs ??= await _prefs;
-      bool?  formDataStored = await prefs!.setString("form_data_local", formJson);
-      formData = formDataStored?formJson:"";
+      bool? formDataStored =
+          await prefs!.setString("form_data_local", formJson);
+      formData = formDataStored ? formJson : "";
     } catch (e) {
       print(e);
       formData = "";

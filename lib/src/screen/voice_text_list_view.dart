@@ -10,9 +10,11 @@ class VoiceTextListView extends StatefulWidget {
 class _VoiceTextListViewState extends State<VoiceTextListView> {
   List<String> dataList = [];
   bool isRevers = false;
+
   _VoiceTextListViewState() {
     dataList = packageUtil.getVoiceTextList;
   }
+
   @override
   void initState() {
     super.initState();
