@@ -52,7 +52,8 @@ voice_assistant: ^1.0.0
 ## Example
 
      import 'dart:convert';
-     import 'package:example/http_service.dart'; import 'package:voice_assistant/voice_assistant.dart';
+     import 'package:example/http_service.dart';
+     import 'package:voice_assistant/voice_assistant.dart';
 
      void main() { runApp(const MyApp()); }
 

@@ -1,8 +1,5 @@
 name: voice_assistant
-description: This plugin contains a set of classes that make it easy to use the voice recognition
-  capabilities of the underlying platform in Flutter. It supports Android, iOS. The
-  target use cases for this library are commands and short phrases, not continuous spoken
-  conversion or always on listening.
+description: This plugin contains a set of classes that make it easy to use the voice recognition capabilities of the underlying platform in Flutter. It supports Android and iOS.
 version: 1.0.0
 homepage: https://github.com/dexbytes
 repository: https://github.com/dexbytesinfotech/voice-assistant.git

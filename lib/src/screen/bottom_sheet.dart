@@ -93,7 +93,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     } else {
       setState(() {
         isListen = false;
-        listenStatus == ListenStatus.done;
+        listenStatus = ListenStatus.done;
       });
       speech.stop();
     }
