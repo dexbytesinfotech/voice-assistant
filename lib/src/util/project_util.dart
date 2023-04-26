@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:voice_assistant/src/util/shared_pref.dart';
 
+///Common function class
 class PackageUtil {
   static List<String> addedString = [];
 
-  /// Add coverted text
+  /// Add converted text
   set addVoiceText(String value) {
     addedString.add(value);
     String encodedData = json.encode(addedString);
@@ -20,11 +21,8 @@ class PackageUtil {
     }
   }
 
+  /// Get voice text list data
   get getVoiceTextList => addedString;
-
-  String getText(String dateFormat, DateTime dateTime) {
-    return "";
-  }
 }
 
 PackageUtil packageUtil = PackageUtil();

@@ -28,7 +28,9 @@ class _VoiceTextListViewState extends State<VoiceTextListView> {
       appBar: AppBar(
           backgroundColor: Colors.white,
           iconTheme: const IconThemeData(
-            color: Colors.black, //change your color here
+            color: Colors.black,
+
+            ///change your color here
           ),
           centerTitle: true,
           title: const Text(
