@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
+/// Call API
 class HttpService {
   final String postsURL = "https://freshfood-api.dexbytes.in/api/";
   final String searchApi = "search/suggestions";
@@ -11,6 +12,7 @@ class HttpService {
     'Accept': 'application/json'
   };
 
+  /// Call this function to get searched item
   Future<String> getPosts(Map<String, dynamic> requestData) async {
     var requestBody = json.encode(requestData);
     String fullUrl = postsURL + searchApi;
@@ -21,7 +23,6 @@ class HttpService {
     ).timeout(const Duration(seconds: 30));
     if (res.statusCode == 200) {
       try {
-        // var body = jsonDecode(res.body);
         String body = res.body;
         return body;
       } catch (e) {

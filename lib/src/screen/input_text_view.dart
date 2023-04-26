@@ -80,15 +80,14 @@ class _InputTextViewState extends State<InputTextView> {
     );
   }
 
+  /// get value from controller
   void _printLatestValue() {
-    // setState(() {
     inputValue = controller.text;
     if (inputValue.isNotEmpty) {
       isEnable = true;
     } else {
       isEnable = false;
     }
-    // });
     widget.currentTextCallBack?.call(inputValue);
   }
 }

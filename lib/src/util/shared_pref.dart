@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Store data in SharedPreferences
 class LocalStorage {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   static SharedPreferences? prefs;
@@ -21,7 +22,7 @@ class LocalStorage {
       final key = keys;
       final value = values;
       prefs.setString(key, value);
-      print('saved $key $value');
+      // print('saved $key $value');
       return true;
     } catch (e) {
       // debugPrint("$e");
@@ -34,12 +35,12 @@ class LocalStorage {
     try {
       final prefs = await SharedPreferences.getInstance();
       final key = keys;
-      print('read key: $keys');
+      // print('read key: $keys');
       final value = prefs.getString(key) ?? "";
-      print('read value: $keys $value');
+      // print('read value: $keys $value');
       return value;
     } catch (e) {
-      print("$e");
+      // print("$e");
       return "";
     }
   }
@@ -51,7 +52,7 @@ class LocalStorage {
       prefs ??= await _prefs;
       formData = prefs!.getString("form_data_local") ?? "";
     } catch (e) {
-      print(e);
+      // print(e);
       formData = "";
     }
     return formData;
@@ -66,7 +67,7 @@ class LocalStorage {
           await prefs!.setString("form_data_local", formJson);
       formData = formDataStored ? formJson : "";
     } catch (e) {
-      print(e);
+      // print(e);
       formData = "";
     }
     return formData;

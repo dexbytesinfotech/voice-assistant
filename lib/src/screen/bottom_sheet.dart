@@ -85,6 +85,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     }
   }
 
+  ///listen voice
   void listen() async {
     ///Display pop to take input from user for search type
     if (!isListen && listenStatus == ListenStatus.non) {
@@ -172,6 +173,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     widget.listenTextCompleteCallBack.call(textStringValueTemp, actionType);
   }
 
+  ///Call this function while done/complete voice
   textStreamDone() {
     String textStringValueTemp = textStringValue;
     if (mounted) {

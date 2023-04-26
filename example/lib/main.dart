@@ -10,7 +10,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  /// This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+///Example project main Screen
 class MyAppPage extends StatefulWidget {
   const MyAppPage({super.key, required this.title});
 
@@ -66,8 +67,8 @@ class _MyAppPageState extends State<MyAppPage> {
           ],
         ),
         body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
+          /// Center is a layout widget. It takes a single child and positions it
+          /// in the middle of the parent.
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -99,9 +100,7 @@ class _MyAppPageState extends State<MyAppPage> {
                           if (responseData.isNotEmpty &&
                               responseData['success'] &&
                               responseData['data'].isNotEmpty) {
-                            //setState(() {
                             searchedData = responseData['data'];
-                            //  });
                           }
                           setState(() {
                             isSearching = false;
