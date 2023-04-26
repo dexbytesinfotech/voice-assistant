@@ -4,6 +4,11 @@ enum ListenStatus { non, listening, notListening, done }
 
 enum ActionType { search, store, multiOption }
 
+/// Mic main widget.
+/// User will get current converted text [listenTextCompleteCallBack]
+/// User will open direct mic by enable/disable [micClicked]
+/// Change View configuration [micIcon], [micNoneIcon], [saveIcon], [saveIcon],
+/// [loaderColor], [waveColor], [waveDoneColor], [micBgColorColor]
 class VoiceToTextView extends StatefulWidget {
   final Function(String?) listenTextStreamCallBack;
   final Function(String?, ActionType) listenTextCompleteCallBack;
@@ -111,7 +116,7 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
             widget.micIcon != null ? widget.micIcon! : const Icon(Icons.mic));
   }
 
-  //Card decoration
+  ///Card decoration
   BoxDecoration boxDecoration() {
     return BoxDecoration(
       color: Colors.white,
@@ -121,6 +126,7 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
     );
   }
 
+  /// Option bottomSheet
   void _optionBottomSheet(context, Function(ActionType) selectedItemCallBack) {
     getText(String title) => Padding(
         padding: const EdgeInsets.only(top: 7, bottom: 7),
@@ -189,6 +195,7 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
         });
   }
 
+  /// Voice Listener BottomSheet
   void _voiceListenerBottomSheet(
       {context, ActionType actionTypeValue = ActionType.search}) {
     showModalBottomSheet(

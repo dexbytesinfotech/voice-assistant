@@ -1,5 +1,6 @@
 part of voice_assistant;
 
+/// Custom input text for edit final converted text
 class InputTextView extends StatefulWidget {
   final String inputValue;
   final Function(String)? currentTextCallBack;
@@ -22,7 +23,8 @@ class _InputTextViewState extends State<InputTextView> {
   @override
   void initState() {
     super.initState();
-    // Start listening to changes.
+
+    /// Start listening to changes.
     controller.addListener(_printLatestValue);
     localStorage
         .readStr('item_list')
@@ -31,7 +33,7 @@ class _InputTextViewState extends State<InputTextView> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    /// TODO: implement dispose
     super.dispose();
     controller.clear();
     controller.dispose();
@@ -39,7 +41,7 @@ class _InputTextViewState extends State<InputTextView> {
 
   @override
   void didUpdateWidget(covariant InputTextView oldWidget) {
-    // TODO: implement didUpdateWidget
+    /// TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
     setState(() {
       inputValue = widget.inputValue;

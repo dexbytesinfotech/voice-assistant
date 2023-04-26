@@ -1,5 +1,6 @@
 part of voice_assistant;
 
+///Bottom sheet to display multi option
 class BottomSheetView extends StatefulWidget {
   final Function(String?) listenTextStreamCallBack;
   final Function(String?, ActionType) listenTextCompleteCallBack;
@@ -85,7 +86,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
   }
 
   void listen() async {
-    //Display pop to take input from user for search type
+    ///Display pop to take input from user for search type
     if (!isListen && listenStatus == ListenStatus.non) {
       voiceToTextListen(actionType);
     } else if (!isListen && (listenStatus == ListenStatus.done)) {
@@ -99,7 +100,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     }
   }
 
-  //voice to text
+  ///voice to text
   voiceToTextListen(ActionType clickedActionType) async {
     bool avail = await speech.initialize(
         finalTimeout: const Duration(milliseconds: 500));
@@ -159,6 +160,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     }
   }
 
+  ///Store converted text in local storage
   textSaveClicked() {
     String textStringValueTemp = textStringValue;
     packageUtil.addVoiceText = textStringValueTemp;
@@ -213,6 +215,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     speech = speechToText.SpeechToText();
   }
 
+  ///Mic icon
   Widget getIcon(
       {bool isListen = false, ListenStatus listenStatus = ListenStatus.non}) {
     if (isDoingBackgroundProcess) {
@@ -252,6 +255,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
         : const Icon(Icons.mic_none);
   }
 
+  ///Top message view
   Widget topMessageView() {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -294,6 +298,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     );
   }
 
+  ///Error message view
   Widget topErrorMessageView() {
     return Column(
       children: [
@@ -312,6 +317,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     );
   }
 
+  ///Error message bottom view
   Widget bottomErrorMessageView() {
     return Column(
       children: [
@@ -322,7 +328,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
     );
   }
 
-  //Card decoration
+  ///Card decoration
   BoxDecoration boxDecoration() {
     return BoxDecoration(
       color: Colors.white,

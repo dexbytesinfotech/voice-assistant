@@ -1,5 +1,6 @@
 part of voice_assistant;
 
+/// Converted text list screen
 class VoiceTextListView extends StatefulWidget {
   const VoiceTextListView({Key? key}) : super(key: key);
 
