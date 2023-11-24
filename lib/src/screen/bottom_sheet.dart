@@ -58,7 +58,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
   bool isError = false;
   bool doneCalled = false;
   String topErrorMessage = "Sorry! Didn't hear that";
-  String topSecondMessage = "Try saying restaurant name or a dish";
+  String topSecondMessage = "Please try again";
   String bottomMessage = "Tap the microphone to try again";
   double cardRadius = 20.0;
   Timer? listenTimer;
