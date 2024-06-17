@@ -337,13 +337,12 @@ class _BottomSheetViewState extends State<BottomSheetView> {
 
   @override
   Widget build(BuildContext context) {
-
-    if(!isInit){
+    if (!isInit) {
       isInit = true;
-    listenStatus = widget.listenStatus;
-    isDoingBackgroundProcess = widget.isDoingBackgroundProcess!;
-    actionType = widget.actionType!;
-    listenEndTimeInSecond = widget.listenEndTimeInSecond;
+      listenStatus = widget.listenStatus;
+      isDoingBackgroundProcess = widget.isDoingBackgroundProcess!;
+      actionType = widget.actionType!;
+      listenEndTimeInSecond = widget.listenEndTimeInSecond;
     }
 
     return Wrap(

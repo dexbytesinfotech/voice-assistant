@@ -61,7 +61,6 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
   double cardRadius = 20.0;
   bool? micClicked;
 
-
   @override
   void didUpdateWidget(covariant VoiceToTextView oldWidget) {
     // TODO: implement didUpdateWidget
@@ -81,8 +80,7 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
 
   @override
   Widget build(BuildContext context) {
-
-    if(!isInit){
+    if (!isInit) {
       isInit = true;
       micClicked ??= widget.micClicked;
       listenStatus = widget.listenStatus;
