@@ -7,10 +7,9 @@ import 'dart:async';
 
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
-import 'package:speech_to_text/speech_to_text.dart' as speechToText;
+import 'package:speech_to_text/speech_to_text.dart' as speech_to_text;
 import 'package:voice_assistant/src/util/project_util.dart';
 import 'package:voice_assistant/src/util/shared_pref.dart';
-
 export 'package:flutter/material.dart';
 
 part 'src/screen/bottom_sheet.dart';

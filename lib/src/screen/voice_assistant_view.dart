@@ -46,38 +46,21 @@ class VoiceToTextView extends StatefulWidget {
   });
 
   @override
-  State<VoiceToTextView> createState() => _VoiceToTextViewState(
-      listenStatus: listenStatus,
-      micClicked: micClicked,
-      isDoingBackgroundProcess: isDoingBackgroundProcess!);
+  State<VoiceToTextView> createState() => _VoiceToTextViewState();
 }
 
 class _VoiceToTextViewState extends State<VoiceToTextView> {
-  late speechToText.SpeechToText speech;
+  late speech_to_text.SpeechToText speech;
   bool isListen = false;
+  bool isInit = false;
   double confidence = 1.0;
-  ListenStatus? listenStatus;
+  ListenStatus? listenStatus = ListenStatus.non;
   String textStringValue = "";
   ActionType actionType = ActionType.search;
-  bool isDoingBackgroundProcess;
+  bool isDoingBackgroundProcess = false;
   double cardRadius = 20.0;
-  bool micClicked;
+  bool? micClicked;
 
-  _VoiceToTextViewState(
-      {this.listenStatus = ListenStatus.non,
-      this.micClicked = false,
-      this.isDoingBackgroundProcess = false}) {
-    if (micClicked) {
-      Timer(const Duration(milliseconds: 5), () {
-        try {
-          _voiceListenerBottomSheet(
-              context: context, actionTypeValue: widget.clickedActionType);
-        } catch (e) {
-          // print(e);
-        }
-      });
-    }
-  }
 
   @override
   void didUpdateWidget(covariant VoiceToTextView oldWidget) {
@@ -93,11 +76,29 @@ class _VoiceToTextViewState extends State<VoiceToTextView> {
   @override
   void initState() {
     super.initState();
-    speech = speechToText.SpeechToText();
+    speech = speech_to_text.SpeechToText();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    if(!isInit){
+      isInit = true;
+      micClicked ??= widget.micClicked;
+      listenStatus = widget.listenStatus;
+      isDoingBackgroundProcess = widget.isDoingBackgroundProcess!;
+      if (micClicked!) {
+        Timer(const Duration(milliseconds: 5), () {
+          try {
+            _voiceListenerBottomSheet(
+                context: context, actionTypeValue: widget.clickedActionType);
+          } catch (e) {
+            // print(e);
+          }
+        });
+      }
+    }
+
     return InkWell(
         onTap: () {
           if (widget.clickedActionType == ActionType.multiOption) {

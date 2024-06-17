@@ -39,22 +39,19 @@ class BottomSheetView extends StatefulWidget {
 
   @override
   State<BottomSheetView> createState() {
-    return _BottomSheetViewState(
-        listenStatus: listenStatus,
-        isDoingBackgroundProcess: isDoingBackgroundProcess!,
-        actionType: actionType!,
-        listenEndTimeInSecond: listenEndTimeInSecond);
+    return _BottomSheetViewState();
   }
 }
 
 class _BottomSheetViewState extends State<BottomSheetView> {
-  late speechToText.SpeechToText speech;
+  late speech_to_text.SpeechToText speech;
+  bool isInit = false;
   bool isListen = false;
   double confidence = 1.0;
-  ListenStatus? listenStatus;
+  ListenStatus? listenStatus = ListenStatus.non;
   String textStringValue = "";
   ActionType actionType = ActionType.search;
-  bool isDoingBackgroundProcess;
+  bool isDoingBackgroundProcess = false;
   bool isError = false;
   bool doneCalled = false;
   String topErrorMessage = "Sorry! Didn't hear that";
@@ -62,13 +59,9 @@ class _BottomSheetViewState extends State<BottomSheetView> {
   String bottomMessage = "Tap the microphone to try again";
   double cardRadius = 20.0;
   Timer? listenTimer;
-  int listenEndTimeInSecond;
+  int listenEndTimeInSecond = 5;
 
-  _BottomSheetViewState(
-      {this.listenEndTimeInSecond = 5,
-      this.listenStatus = ListenStatus.non,
-      this.isDoingBackgroundProcess = false,
-      this.actionType = ActionType.search}) {
+  _BottomSheetViewState() {
     Timer(const Duration(milliseconds: 5), () {
       listen();
     });
@@ -215,7 +208,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
   @override
   void initState() {
     super.initState();
-    speech = speechToText.SpeechToText();
+    speech = speech_to_text.SpeechToText();
   }
 
   ///Mic icon
@@ -344,6 +337,15 @@ class _BottomSheetViewState extends State<BottomSheetView> {
 
   @override
   Widget build(BuildContext context) {
+
+    if(!isInit){
+      isInit = true;
+    listenStatus = widget.listenStatus;
+    isDoingBackgroundProcess = widget.isDoingBackgroundProcess!;
+    actionType = widget.actionType!;
+    listenEndTimeInSecond = widget.listenEndTimeInSecond;
+    }
+
     return Wrap(
       alignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
