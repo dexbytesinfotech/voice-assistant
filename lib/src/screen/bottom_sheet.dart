@@ -1,4 +1,4 @@
-part of voice_assistant;
+part of '../../voice_assistant.dart';
 
 ///Bottom sheet to display multi option
 class BottomSheetView extends StatefulWidget {
@@ -19,7 +19,7 @@ class BottomSheetView extends StatefulWidget {
   final int listenEndTimeInSecond;
 
   const BottomSheetView({
-    Key? key,
+    super.key,
     required this.listenTextStreamCallBack,
     required this.listenTextCompleteCallBack,
     this.listenStatus = ListenStatus.non,
@@ -35,7 +35,7 @@ class BottomSheetView extends StatefulWidget {
     this.waveColor = Colors.red,
     this.waveDoneColor = Colors.green,
     this.micBgColorColor = Colors.green,
-  }) : super(key: key);
+  });
 
   @override
   State<BottomSheetView> createState() {
@@ -395,9 +395,9 @@ class _BottomSheetViewState extends State<BottomSheetView> {
                         glowColor: textStringValue.isNotEmpty
                             ? widget.waveDoneColor!
                             : widget.waveColor!,
-                        endRadius: 65.0,
+                        // endRadius: 65.0,
                         duration: const Duration(milliseconds: 2000),
-                        repeatPauseDuration: const Duration(milliseconds: 100),
+                        // repeatPauseDuration: const Duration(milliseconds: 100),
                         repeat: true,
                         child: FloatingActionButton(
                           backgroundColor: widget.micBgColorColor,

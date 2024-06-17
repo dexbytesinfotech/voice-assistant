@@ -1,3 +1,8 @@
+## [1.0.1] - 17/06/2024
+
+* Code level document update.
+* Dart packages update.
+
 ## [1.0.0+4] - 26/04/2023
 
 * TODO: Code level document update.

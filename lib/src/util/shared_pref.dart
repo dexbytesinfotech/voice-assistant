@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Store data in SharedPreferences
@@ -10,7 +11,9 @@ class LocalStorage {
     try {
       final prefs = await SharedPreferences.getInstance();
       prefs.clear();
-    } catch (e) {}
+    } catch (e) {
+      debugPrint("$e");
+    }
   }
 
   ///Store String value

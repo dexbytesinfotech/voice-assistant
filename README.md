@@ -36,12 +36,12 @@ This plugin relies on the flutter core.
 
 ## Usage
 
-To use the plugin you just need to add voice_assistant: ^1.0.0+4 into your pubspec.yaml file and run
+To use the plugin you just need to add voice_assistant: ^1.0.1 into your pubspec.yaml file and run
 pub get.
 
 #### Add following into your package's pubspec.yaml (and run an implicit dart pub get):
 
-voice_assistant: ^1.0.0+4
+voice_assistant: ^1.0.1
 
 [comment]: <> (## Multi Step Form UI Sample)
 

@@ -1,12 +1,11 @@
 name: voice_assistant
 description: This plugin contains a set of classes that make it easy to use the voice recognition capabilities of the underlying platform in Flutter. It supports Android and iOS.
-version: 1.0.0+4
+version: 1.0.1
 homepage: https://github.com/dexbytes
 repository: https://github.com/dexbytesinfotech/voice-assistant.git
 
 environment:
-#  sdk: '>=2.19.5 <3.0.0'
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: '>=3.4.1 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -14,13 +13,13 @@ dependencies:
     sdk: flutter
   speech_to_text: ^6.1.1
   highlight_text: ^1.6.0
-  avatar_glow: ^2.0.2
+  avatar_glow: ^3.0.1
   shared_preferences: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

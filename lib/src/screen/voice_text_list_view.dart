@@ -1,8 +1,8 @@
-part of voice_assistant;
+part of '../../voice_assistant.dart';
 
 /// Converted text list screen
 class VoiceTextListView extends StatefulWidget {
-  const VoiceTextListView({Key? key}) : super(key: key);
+  const VoiceTextListView({super.key});
 
   @override
   State<VoiceTextListView> createState() => _VoiceTextListViewState();

@@ -1,4 +1,4 @@
-part of voice_assistant;
+part of '../../voice_assistant.dart';
 
 /// Custom input text for edit final converted text
 class InputTextView extends StatefulWidget {
@@ -6,8 +6,7 @@ class InputTextView extends StatefulWidget {
   final Function(String)? currentTextCallBack;
 
   const InputTextView(
-      {Key? key, this.inputValue = "", this.currentTextCallBack})
-      : super(key: key);
+      {super.key, this.inputValue = "", this.currentTextCallBack});
 
   @override
   State<InputTextView> createState() => _InputTextViewState();

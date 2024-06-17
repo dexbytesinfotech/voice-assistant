@@ -1,4 +1,4 @@
-part of voice_assistant;
+part of '../../voice_assistant.dart';
 
 enum ListenStatus { non, listening, notListening, done }
 
@@ -27,7 +27,7 @@ class VoiceToTextView extends StatefulWidget {
   final int listenEndTimeInSecond;
 
   const VoiceToTextView({
-    Key? key,
+    super.key,
     required this.listenTextStreamCallBack,
     required this.listenTextCompleteCallBack,
     this.listenStatus = ListenStatus.non,
@@ -43,7 +43,7 @@ class VoiceToTextView extends StatefulWidget {
     this.waveColor = Colors.red,
     this.waveDoneColor = Colors.green,
     this.micBgColorColor = Colors.green,
-  }) : super(key: key);
+  });
 
   @override
   State<VoiceToTextView> createState() => _VoiceToTextViewState(
