@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:example/http_service.dart';
 import 'package:voice_assistant/voice_assistant.dart';
 
@@ -22,7 +21,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 ///Example project main Screen
 class MyAppPage extends StatefulWidget {
   const MyAppPage({super.key, required this.title});
@@ -32,7 +30,6 @@ class MyAppPage extends StatefulWidget {
   @override
   State<MyAppPage> createState() => _MyAppPageState();
 }
-
 class _MyAppPageState extends State<MyAppPage> {
   String textStringValue = "";
   List<dynamic> searchedData = [];

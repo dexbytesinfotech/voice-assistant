@@ -12,6 +12,8 @@ import 'package:voice_assistant/src/util/project_util.dart';
 import 'package:voice_assistant/src/util/shared_pref.dart';
 export 'package:flutter/material.dart';
 
+export 'voice_assistant_demo_screen.dart';
+
 part 'src/screen/bottom_sheet.dart';
 part 'src/screen/input_text_view.dart';
 part 'src/screen/voice_assistant_view.dart';
